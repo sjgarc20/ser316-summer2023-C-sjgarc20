@@ -1,3 +1,11 @@
+/**
+ * @file Product.java
+ * @author Sam
+ * @date 6/12/2023
+ * 
+ * @description for creating product objects
+ */
+
 package main.java;
 
 public class Product {

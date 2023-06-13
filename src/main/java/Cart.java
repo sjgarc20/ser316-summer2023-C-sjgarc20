@@ -1,3 +1,12 @@
+/**
+ * @file Cart.java
+ * @author Sam
+ * @date 6/12/2023
+ * 
+ * @description For calculating the cost of items in the cart,
+ * including factoring in deals/discounts and tax
+ */
+
 package main.java;
 
 import java.util.ArrayList;
