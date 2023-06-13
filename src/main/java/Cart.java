@@ -43,7 +43,7 @@ public class Cart {
     // calculates how much was saved in the current shopping cart based on the deals, returns the saved amount
     // throws exception if alcohol is bought from underage person
     // TODO: Create node graph for this method in assign 4: create white box tests and fix the method, reach at least 98% coverage
-    public int Amount_saved() throws UnderAgeException {
+    public int amountSaved() throws UnderAgeException {
         int subTotal = 0;
         int costAfterSavings = 0;
 
