@@ -1,3 +1,11 @@
+/**
+ * @file costTest.java
+ * @author Sam
+ * @date 06/12/2023
+ * 
+ * @description For running tests of my own implementation of calcCost()
+ */
+
 package test.java;
 
 import main.java.*;
@@ -9,42 +17,15 @@ import java.lang.reflect.Constructor;
 import java.util.Arrays;
 import java.util.Collection;
 
-import main.java.Cart;
-import main.java.Cart1;
-import main.java.Cart2;
-import main.java.Cart3;
-import main.java.Cart4;
-import main.java.Cart5;
-
 import static org.junit.Assert.*;
 
-@RunWith(Parameterized.class)
-public class BlackBoxGiven {
 
-    private Class<Cart> classUnderTest;
 
-    @SuppressWarnings("unchecked")
-    public BlackBoxGiven(Object classUnderTest) {
-        this.classUnderTest = (Class<Cart>) classUnderTest;
-    }
+public class costTest {
 
-    // Define all classes to be tested
-    @Parameterized.Parameters
-    public static Collection<Object[]> cartClassUnderTest() {
-        Object[][] classes = {
-            {Cart0.class},
-            {Cart1.class},
-            {Cart2.class},
-            {Cart3.class},
-            {Cart4.class},
-            {Cart5.class}
-        };
-        return Arrays.asList(classes);
-    }
-
-    private Cart createCart(int age) throws Exception {
-        Constructor<Cart> constructor = classUnderTest.getConstructor(Integer.TYPE);
-        return constructor.newInstance(age);
+	
+	private Cart createCart(int age) throws Exception {
+        return new Cart(age);
     }
 
     // A sample Cart
@@ -225,43 +206,4 @@ public class BlackBoxGiven {
         test_cart.addItem(new Alcohol());
         assertNotEquals("Legal Age shopper was denied alcohol!", 0, test_cart.calcCost(), .01);
     }
-//    @Test
-//    public void noFalseUnderAgeCatches() throws Exception {
-//    	Cart test_cart = createCart(0);
-//        try { 
-//        	test_cart.addItem(new Dairy());
-//        } catch (Exception e) {
-//        	assertEquals("If Failed then False Alcohol Flag!", 3.24, test_cart.calcCost(), .01);
-//        }
-//        
-//        test_cart = createCart(1);
-//        try {
-//        	test_cart.addItem(new Dairy());
-//        } catch (Exception e) {
-//        	assertEquals("If Failed then False Alcohol Flag!", 3.24, test_cart.calcCost(), .01);
-//        
-//        test_cart = createCart(19);
-//        	test_cart.addItem(new Dairy());
-//        	assertEquals("If Failed then False Alcohol Flag!", 3.24, test_cart.calcCost(), .01);
-//        
-//        test_cart = createCart(20);
-//        	test_cart.addItem(new Dairy());
-//        	assertEquals("If Failed then False Alcohol Flag!", 3.24, test_cart.calcCost(), .01);
-//        	
-//        test_cart = createCart(21);
-//        	test_cart.addItem(new Dairy());
-//        	assertEquals("If Failed then False Under Age Catch!", 0, test_cart.calcCost(), .01);
-//        
-//        test_cart = createCart(22);
-//        test_cart.addItem(new Dairy());
-//        	assertEquals("If Failed then False Under Age Catch!", 0, test_cart.calcCost(), .01);
-//        
-//        test_cart = createCart(30);
-//       	test_cart.addItem(new Dairy());
-//        assertEquals("If Failed then False Under Age Catch!", 0, test_cart.calcCost(), .01);
-//        
-//        test_cart = createCart(100);
-//        test_cart.addItem(new Dairy());
-//        assertEquals("If Failed then False Under Age Catch!", 0, test_cart.calcCost(), .01);
-//    }
 }
