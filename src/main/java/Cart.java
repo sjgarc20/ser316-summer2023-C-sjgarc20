@@ -28,7 +28,38 @@ public class Cart {
      * @throws UnderAgeException
      */
     public double calcCost() throws UnderAgeException {
-        return 0; //implement me, will be important for assignment 4 (nothing to do here for assignment 3)
+    	double totalCost = 0.0;
+        int alcoholCounter = 0;
+        int frozenFoodCounter = 0;
+        int produceCounter = 0;
+
+        for (int i = 0; i < this.cart.size(); i++) {
+            totalCost += (double)((Product)this.cart.get(i)).getCost();
+            if (((Product)this.cart.get(i)).getClass() == Alcohol.class) {
+                ++alcoholCounter;
+                if (this.userAge < 21) {
+                	return 0.0;
+                    //throw new UnderAgeException("This customer is under 21 and is not allowed to purchase alcohol");
+                }
+            } else if (((Product)this.cart.get(i)).getClass() == FrozenFood.class) {
+                ++frozenFoodCounter;
+            } else if (((Product)this.cart.get(i)).getClass() == Produce.class) {
+                ++produceCounter;
+            }
+
+            if (alcoholCounter >= 1 && frozenFoodCounter >= 1) {
+                totalCost -= 3.0;
+                --alcoholCounter;
+                --frozenFoodCounter;
+            }
+
+            if (produceCounter >= 3) {
+                --totalCost;
+                produceCounter -= 3;
+            }
+        }
+
+        return totalCost + this.getTax(totalCost, "AZ"); //implement me, will be important for assignment 4 (nothing to do here for assignment 3)
     }
 
     // calculates how much was saved in the current shopping cart based on the deals, returns the saved amount
