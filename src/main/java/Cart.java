@@ -14,9 +14,9 @@ import java.util.List;
 
 public class Cart {
 
-    protected int userAge;
-    public List<Product> cart;
-    public int cartStorage;
+    private int userAge;
+    private List<Product> cart;
+    private int cartStorage;
 
     /**
      * Calculates the final cost after all savings and tax has been applied. Also checks
