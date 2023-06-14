@@ -77,13 +77,8 @@ public class Cart {
         for(int i = 0; i < cart.size(); i++) {
             subTotal += cart.get(i).getCost();
             costAfterSavings =costAfterSavings+cart.get(i).getCost();
-
-            System.out.println(cart.get(i).getClass().toString());
-            System.out.println(Produce.class.toString());
-            System.out.println(i);
-            
+            // changed all if statements from == to .eqauls to properly compare classes
             if (cart.get(i).getClass().toString().equals(Produce.class.toString())) {
-            	System.out.println(i);
                 produce_counter++;
 
                 if (produce_counter >= 3) {
@@ -100,11 +95,11 @@ public class Cart {
             else if (cart.get(i).getClass().toString().equals(FrozenFood.class.toString())) {
                 frozenFoodCounter++;
             }
-            else if (cart.get(i).getClass().toString().equals(Dairy.class.toString()))
+            else if (cart.get(i).getClass().toString().equals(Dairy.class.toString())) {// changed Dairy from FrozenFood because we already checked FrozenFood
                 dairyCounter++;
-
+            }
             if (alcoholCounter >= 1 && frozenFoodCounter >= 1) {
-                 costAfterSavings = costAfterSavings - 3;
+                 costAfterSavings = costAfterSavings - 3; // changed plus to minus, because discounts should be removed from cost
                  alcoholCounter--;
                  frozenFoodCounter--;
             }
