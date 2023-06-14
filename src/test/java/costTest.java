@@ -167,19 +167,39 @@ public class costTest {
     public void alcoholAgeLimitEnforced() throws Exception, UnderAgeException {
         Cart test_cart = createCart(0);
         test_cart.addItem(new Alcohol());
-        assertNotEquals("Under Aged shopper was allowed alcohol!", 8.64, test_cart.calcCost(), .01);
+        try {
+        	test_cart.calcCost();
+			fail("Should have thrown UnderAgeException");
+		} catch (UnderAgeException e) {
+			assertEquals("The User is not of age to purchase alcohol!", e.getMessage());
+		}
         
         test_cart = createCart(1);
         test_cart.addItem(new Alcohol());
-        assertNotEquals("Under Aged shopper was allowed alcohol!", 8.64, test_cart.calcCost(), .01);
+        try {
+        	test_cart.calcCost();
+			fail("Should have thrown UnderAgeException");
+		} catch (UnderAgeException e) {
+			assertEquals("The User is not of age to purchase alcohol!", e.getMessage());
+		}
         
         test_cart = createCart(19);
         test_cart.addItem(new Alcohol());
-        assertNotEquals("Under Aged shopper was allowed alcohol!", 8.64, test_cart.calcCost(), .01);
+        try {
+        	test_cart.calcCost();
+			fail("Should have thrown UnderAgeException");
+		} catch (UnderAgeException e) {
+			assertEquals("The User is not of age to purchase alcohol!", e.getMessage());
+		}
         
         test_cart = createCart(20);
         test_cart.addItem(new Alcohol());
-        assertNotEquals("Under Aged shopper was allowed alcohol!", 8.64, test_cart.calcCost(), .01);
+        try {
+        	test_cart.calcCost();
+			fail("Should have thrown UnderAgeException");
+		} catch (UnderAgeException e) {
+			assertEquals("The User is not of age to purchase alcohol!", e.getMessage());
+		}
     }
     
     @Test

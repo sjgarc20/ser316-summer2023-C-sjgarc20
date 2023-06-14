@@ -38,8 +38,7 @@ public class Cart {
             if (((Product)this.cart.get(i)).getClass() == Alcohol.class) {
                 ++alcoholCounter;
                 if (this.userAge < 21) {
-                	return 0.0;
-                    //throw new UnderAgeException("This customer is under 21 and is not allowed to purchase alcohol");
+                	throw new UnderAgeException("The User is not of age to purchase alcohol!");
                 }
             } else if (((Product)this.cart.get(i)).getClass() == FrozenFood.class) {
                 ++frozenFoodCounter;
@@ -120,6 +119,7 @@ public class Cart {
                 break;
             case "NY":
                 newTotal = totalBT * .1;
+                break;
             case "CO":
                 newTotal = totalBT * .07;
                 break;
@@ -135,9 +135,9 @@ public class Cart {
 
     public boolean RemoveItem(Product productToRemove)
     {
-    		boolean test = false;
+    	boolean test = false;
         for (int i = 0; i < cart.size(); i++) {
-            if (cart.get(i) == productToRemove) {
+            if (cart.get(i).getClass().equals(productToRemove.getClass())) {
                  cart.remove(i);
                  test = true;
                  return test;
