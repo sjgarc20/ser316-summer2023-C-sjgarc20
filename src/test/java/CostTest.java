@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 
 
-public class costTest {
+public class CostTest {
 
 
     private Cart createCart(int age) throws Exception {

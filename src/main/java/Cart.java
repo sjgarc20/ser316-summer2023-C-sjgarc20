@@ -7,7 +7,7 @@ public class Cart {
 
     protected int userAge;
     public List<Product> cart;
-    public int cartStorage;
+    // public int cartStorage; // SER316 TASK 2 SPOTBUGS FIX
 
     /**
      * Calculates the final cost after all savings and tax has been applied. Also checks
@@ -146,7 +146,7 @@ public class Cart {
      * @param productToRemove item to be removed from cart
      * @return true if found and removed, false if not found/removed
      */
-    public boolean removeItem(Product productToRemove)
+    public boolean removeItem(Product productToRemove) // SER316 TASK 2 SPOTBUGS FIX
     {
         boolean test = false;
         for (int i = 0; i < cart.size(); i++) {
