@@ -10,7 +10,7 @@ package main.java;
 
 public class Main {
     /**
-     * Entry point of program
+     * Entry point of program.
      * @param args program arguments
      * @throws UnderAgeException throws exception if user is under 21
      */

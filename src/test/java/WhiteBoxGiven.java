@@ -33,9 +33,9 @@ public class WhiteBoxGiven {
     }
 
     /**
-     * Tests all nodes except the node throwing UnderAgeException
-     * Tests all edges except edge to UnderAgeException and edge
-     * from last else if being false
+     * Tests all nodes except the node throwing UnderAgeException.
+     * Tests all edges except edge to UnderAgeException and edge.
+     * from last else if being false.
      */
     @Test
     public void nodeAndEdgeCoverage1() {
@@ -57,8 +57,8 @@ public class WhiteBoxGiven {
     }
 
     /**
-     * Tests node for throwing UnderAgeException
-     * Tests edge to UnderAgeException
+     * Tests node for throwing UnderAgeException.
+     * Tests edge to UnderAgeException.
      */
     @Test
     public void nodeAndEdgeCoverage2() {
@@ -75,7 +75,7 @@ public class WhiteBoxGiven {
     }
 
     /**
-     * Tests edge from final else if resolving as false
+     * Tests edge from final else if resolving as false.
      */
     @Test
     public void edgeCoverage3() {
@@ -92,7 +92,7 @@ public class WhiteBoxGiven {
     }
 
     /**
-     * Test calcCost all nodes except that which throws UnderAgeException
+     * Test calcCost all nodes except that which throws UnderAgeException.
      */
     @Test
     public void nodeAndEdgeCoverageCalcCost1() {
@@ -113,7 +113,7 @@ public class WhiteBoxGiven {
     }
 
     /**
-     * Test calcCost node that throws UnderAgeException
+     * Test calcCost node that throws UnderAgeException.
      */
     @Test
     public void nodeAndEdgeCoverageCalcCost2() {
@@ -130,7 +130,7 @@ public class WhiteBoxGiven {
     }
 
     /**
-     * Test all nodes of getTax
+     * Test all nodes of getTax.
      */
     @Test
     public void nodeCoverageGetTax() {
@@ -143,7 +143,7 @@ public class WhiteBoxGiven {
     }
 
     /**
-     * Test nodes of removeItem
+     * Test nodes of removeItem.
      */
     @Test
     public void removeItemNodeCoverage() {

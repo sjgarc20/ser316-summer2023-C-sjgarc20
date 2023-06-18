@@ -5,6 +5,7 @@
  * 
  * @description for creating alcohol objects
  */
+
 package main.java;
 
 public class Alcohol extends Product {

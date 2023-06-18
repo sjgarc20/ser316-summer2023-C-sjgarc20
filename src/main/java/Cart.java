@@ -13,9 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
+    private static final int LEGAL_AGE = 21;
 
-    protected int userAge;
-    public List<Product> cart;
+    private int userAge;
+    private List<Product> cart;
     // public int cartStorage; // SER316 TASK 2 SPOTBUGS FIX
 
     /**
@@ -48,7 +49,7 @@ public class Cart {
             totalCost += (double)((Product)this.cart.get(i)).getCost();
             if (((Product)this.cart.get(i)).getClass() == Alcohol.class) {
                 ++alcoholCounter;
-                if (this.userAge < 21) {
+                if (this.userAge < LEGAL_AGE) {
                     throw new UnderAgeException("The User is not of age to purchase alcohol!");
                 }
             } else if (((Product)this.cart.get(i)).getClass() == FrozenFood.class) {
@@ -155,8 +156,7 @@ public class Cart {
      * @param productToRemove item to be removed from cart
      * @return true if found and removed, false if not found/removed
      */
-    public boolean removeItem(Product productToRemove) // SER316 TASK 2 SPOTBUGS FIX
-    {
+    public boolean removeItem(Product productToRemove) { // SER316 TASK 2 SPOTBUGS FIX
         boolean test = false;
         for (int i = 0; i < cart.size(); i++) {
             if (cart.get(i).getClass().equals(productToRemove.getClass())) {

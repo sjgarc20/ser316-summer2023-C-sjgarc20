@@ -1,10 +1,5 @@
 package test.java;
 
-import main.java.*;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
 import java.lang.reflect.Constructor;
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,6 +10,14 @@ import main.java.Cart2;
 import main.java.Cart3;
 import main.java.Cart4;
 import main.java.Cart5;
+
+import main.java.*;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+
 
 import static org.junit.Assert.*;
 
@@ -28,7 +31,10 @@ public class BlackBoxGiven {
         this.classUnderTest = (Class<Cart>) classUnderTest;
     }
 
-    // Define all classes to be tested
+    /**
+     * Define all classes to be tested
+     * @return list of cart classes to be tested
+     */
     @Parameterized.Parameters
     public static Collection<Object[]> cartClassUnderTest() {
         Object[][] classes = {
@@ -85,183 +91,144 @@ public class BlackBoxGiven {
 
     @Test
     public void costOfDairyCorrect() throws Exception {
-        Cart test_cart = createCart(25);
+        Cart testCart = createCart(25);
 
-        test_cart.addItem(new Dairy());
+        testCart.addItem(new Dairy());
 
-        assertEquals(3.24, test_cart.calcCost(), .01);
+        assertEquals(3.24, testCart.calcCost(), .01);
     }
 
     @Test
     public void costOfMeatCorrect() throws Exception {
-        Cart test_cart = createCart(25);
+        Cart testCart = createCart(25);
 
-        test_cart.addItem(new Meat());
+        testCart.addItem(new Meat());
 
-        assertEquals(10.8, test_cart.calcCost(), .01);
+        assertEquals(10.8, testCart.calcCost(), .01);
     }
 
     @Test
     public void costOfProduceCorrect() throws Exception {
-        Cart test_cart = createCart(25);
+        Cart testCart = createCart(25);
 
-        test_cart.addItem(new Produce());
+        testCart.addItem(new Produce());
 
-        assertEquals(2.16, test_cart.calcCost(), .01);
+        assertEquals(2.16, testCart.calcCost(), .01);
 
-        test_cart.addItem(new Produce());
+        testCart.addItem(new Produce());
 
-        assertEquals(4.32, test_cart.calcCost(), .01);
+        assertEquals(4.32, testCart.calcCost(), .01);
     }
 
     @Test
     public void costOfAlcoholCorrect() throws Exception {
-        Cart test_cart = createCart(25);
+        Cart testCart = createCart(25);
 
-        test_cart.addItem(new Alcohol());
+        testCart.addItem(new Alcohol());
 
-        assertEquals(8.64, test_cart.calcCost(), .01);
+        assertEquals(8.64, testCart.calcCost(), .01);
     }
 
     @Test
     public void costOfFrozenFoodCorrect() throws Exception {
-        Cart test_cart = createCart(25);
+        Cart testCart = createCart(25);
 
-        test_cart.addItem(new FrozenFood());
+        testCart.addItem(new FrozenFood());
 
-        assertEquals(5.4, test_cart.calcCost(), .01);
+        assertEquals(5.4, testCart.calcCost(), .01);
     }
 
     @Test
     public void costOfAlcholAndFrozenFoodCorrect() throws Exception {
-        Cart test_cart = createCart(25);
+        Cart testCart = createCart(25);
 
-        test_cart.addItem(new Alcohol());
-        test_cart.addItem(new FrozenFood());
+        testCart.addItem(new Alcohol());
+        testCart.addItem(new FrozenFood());
 
-        assertEquals(10.8, test_cart.calcCost(), .01);
+        assertEquals(10.8, testCart.calcCost(), .01);
     }
 
     @Test
     public void costOfCorrect() throws Exception {
-        Cart test_cart = createCart(25);
+        Cart testCart = createCart(25);
 
-        test_cart.addItem(new Dairy());
+        testCart.addItem(new Dairy());
 
-        assertEquals(3.24, test_cart.calcCost(), .01);
+        assertEquals(3.24, testCart.calcCost(), .01);
     }
 
     @Test
     public void costOfProduce3for5Correct() throws Exception {
-        Cart test_cart = createCart(25);
+        Cart testCart = createCart(25);
 
         for(int i = 0; i < 3; i++) {
-            test_cart.addItem(new Produce());
+            testCart.addItem(new Produce());
         }
 
-        assertEquals(5.4, test_cart.calcCost(), .01);
+        assertEquals(5.4, testCart.calcCost(), .01);
     }
 
     @Test
     public void multiple3for5ProduceDeal() throws Exception {
-        Cart test_cart = createCart(25);
+        Cart testCart = createCart(25);
 
         for(int i = 0; i < 6; i++) {
-            test_cart.addItem(new Produce());
+            testCart.addItem(new Produce());
         }
 
-        assertEquals(10.8, test_cart.calcCost(), .01);
+        assertEquals(10.8, testCart.calcCost(), .01);
     }
 
     @Test
     public void multipleTypesOfDeals() throws Exception {
-        Cart test_cart = createCart(25);
+        Cart testCart = createCart(25);
 
-        test_cart.addItem(new Alcohol());
-        test_cart.addItem(new FrozenFood());
-        test_cart.addItem(new Alcohol());
-        test_cart.addItem(new FrozenFood());
+        testCart.addItem(new Alcohol());
+        testCart.addItem(new FrozenFood());
+        testCart.addItem(new Alcohol());
+        testCart.addItem(new FrozenFood());
         for(int i = 0; i < 6; i++) {
-            test_cart.addItem(new Produce());
+            testCart.addItem(new Produce());
         }
 
-        assertEquals(32.4, test_cart.calcCost(), .01);
+        assertEquals(32.4, testCart.calcCost(), .01);
     }
 
     @Test
     public void alcoholAgeLimitEnforced() throws Exception, UnderAgeException {
-        Cart test_cart = createCart(0);
-        test_cart.addItem(new Alcohol());
-        assertNotEquals("Under Aged shopper was allowed alcohol!", 8.64, test_cart.calcCost(), .01);
+        Cart testCart = createCart(0);
+        testCart.addItem(new Alcohol());
+        assertNotEquals("Under Aged shopper was allowed alcohol!", 8.64, testCart.calcCost(), .01);
 
-        test_cart = createCart(1);
-        test_cart.addItem(new Alcohol());
-        assertNotEquals("Under Aged shopper was allowed alcohol!", 8.64, test_cart.calcCost(), .01);
+        testCart = createCart(1);
+        testCart.addItem(new Alcohol());
+        assertNotEquals("Under Aged shopper was allowed alcohol!", 8.64, testCart.calcCost(), .01);
 
-        test_cart = createCart(19);
-        test_cart.addItem(new Alcohol());
-        assertNotEquals("Under Aged shopper was allowed alcohol!", 8.64, test_cart.calcCost(), .01);
+        testCart = createCart(19);
+        testCart.addItem(new Alcohol());
+        assertNotEquals("Under Aged shopper was allowed alcohol!", 8.64, testCart.calcCost(), .01);
 
-        test_cart = createCart(20);
-        test_cart.addItem(new Alcohol());
-        assertNotEquals("Under Aged shopper was allowed alcohol!", 8.64, test_cart.calcCost(), .01);
+        testCart = createCart(20);
+        testCart.addItem(new Alcohol());
+        assertNotEquals("Under Aged shopper was allowed alcohol!", 8.64, testCart.calcCost(), .01);
     }
 
     @Test
     public void legalAgedShoppersAllowedAlcohol() throws Exception, UnderAgeException {
-        Cart test_cart = createCart(21);
-        test_cart.addItem(new Alcohol());
-        assertNotEquals("Legal Age shopper was denied alcohol!", 0, test_cart.calcCost(), .01);
+        Cart testCart = createCart(21);
+        testCart.addItem(new Alcohol());
+        assertNotEquals("Legal Age shopper was denied alcohol!", 0, testCart.calcCost(), .01);
 
-        test_cart = createCart(22);
-        test_cart.addItem(new Alcohol());
-        assertNotEquals("Legal Age shopper was denied alcohol!", 0, test_cart.calcCost(), .01);
+        testCart = createCart(22);
+        testCart.addItem(new Alcohol());
+        assertNotEquals("Legal Age shopper was denied alcohol!", 0, testCart.calcCost(), .01);
 
-        test_cart = createCart(30);
-        test_cart.addItem(new Alcohol());
-        assertNotEquals("Legal Age shopper was denied alcohol!", 0, test_cart.calcCost(), .01);
+        testCart = createCart(30);
+        testCart.addItem(new Alcohol());
+        assertNotEquals("Legal Age shopper was denied alcohol!", 0, testCart.calcCost(), .01);
 
-        test_cart = createCart(100);
-        test_cart.addItem(new Alcohol());
-        assertNotEquals("Legal Age shopper was denied alcohol!", 0, test_cart.calcCost(), .01);
+        testCart = createCart(100);
+        testCart.addItem(new Alcohol());
+        assertNotEquals("Legal Age shopper was denied alcohol!", 0, testCart.calcCost(), .01);
     }
-    //    @Test
-    //    public void noFalseUnderAgeCatches() throws Exception {
-    //    	Cart test_cart = createCart(0);
-    //        try { 
-    //        	test_cart.addItem(new Dairy());
-    //        } catch (Exception e) {
-    //        	assertEquals("If Failed then False Alcohol Flag!", 3.24, test_cart.calcCost(), .01);
-    //        }
-    //        
-    //        test_cart = createCart(1);
-    //        try {
-    //        	test_cart.addItem(new Dairy());
-    //        } catch (Exception e) {
-    //        	assertEquals("If Failed then False Alcohol Flag!", 3.24, test_cart.calcCost(), .01);
-    //        
-    //        test_cart = createCart(19);
-    //        	test_cart.addItem(new Dairy());
-    //        	assertEquals("If Failed then False Alcohol Flag!", 3.24, test_cart.calcCost(), .01);
-    //        
-    //        test_cart = createCart(20);
-    //        	test_cart.addItem(new Dairy());
-    //        	assertEquals("If Failed then False Alcohol Flag!", 3.24, test_cart.calcCost(), .01);
-    //        	
-    //        test_cart = createCart(21);
-    //        	test_cart.addItem(new Dairy());
-    //        	assertEquals("If Failed then False Under Age Catch!", 0, test_cart.calcCost(), .01);
-    //        
-    //        test_cart = createCart(22);
-    //        test_cart.addItem(new Dairy());
-    //        	assertEquals("If Failed then False Under Age Catch!", 0, test_cart.calcCost(), .01);
-    //        
-    //        test_cart = createCart(30);
-    //       	test_cart.addItem(new Dairy());
-    //        assertEquals("If Failed then False Under Age Catch!", 0, test_cart.calcCost(), .01);
-    //        
-    //        test_cart = createCart(100);
-    //        test_cart.addItem(new Dairy());
-    //        assertEquals("If Failed then False Under Age Catch!", 0, test_cart.calcCost(), .01);
-    //    }
 }
