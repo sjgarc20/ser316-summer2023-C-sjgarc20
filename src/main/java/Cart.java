@@ -146,7 +146,7 @@ public class Cart {
      * @param productToRemove item to be removed from cart
      * @return true if found and removed, false if not found/removed
      */
-    public boolean RemoveItem(Product productToRemove)
+    public boolean removeItem(Product productToRemove)
     {
         boolean test = false;
         for (int i = 0; i < cart.size(); i++) {

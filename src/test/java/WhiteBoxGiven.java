@@ -151,7 +151,7 @@ public class WhiteBoxGiven {
 
         cart.addItem(new Alcohol());
         cart.addItem(new Alcohol());
-        cart.RemoveItem(new Alcohol());
+        cart.removeItem(new Alcohol());
 
         try {
             assertEquals(8.64, cart.calcCost(), .01);
