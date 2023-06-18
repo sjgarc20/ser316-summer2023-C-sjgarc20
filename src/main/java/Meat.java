@@ -1,3 +1,11 @@
+/**
+ * @file Meat.java
+ * @author Sam
+ * @date 6/12/2023
+ * 
+ * @description for creating meat objects
+ */
+
 package main.java;
 
 public class Meat extends Product {

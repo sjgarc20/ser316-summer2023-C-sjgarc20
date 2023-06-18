@@ -1,3 +1,11 @@
+/**
+ * @file Main.java
+ * @author Sam
+ * @date 6/12/2023
+ * 
+ * @description Entry point of program
+ */
+
 package main.java;
 
 public class Main {
