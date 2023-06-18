@@ -1,6 +1,11 @@
 package main.java;
 
 public class Main {
+    /**
+     * Entry point of program
+     * @param args program arguments
+     * @throws UnderAgeException throws exception if user is under 21
+     */
     public static void main(String[] args) throws UnderAgeException {
 
         // Instantiating some products
@@ -30,6 +35,6 @@ public class Main {
         cart.addItem(milk);
 
         System.out.println(cart.calcCost());
-        System.out.println(cart.Amount_saved());
+        System.out.println(cart.amountSaved());
     }
 }
