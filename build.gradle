@@ -1,7 +1,14 @@
+// plugins {
+//   id "com.github.spotbugs" version "1.6.11"
+//   id "com.github.spotbugs" version "5.0.14"
+// }
+
+
 plugins {
-    id "com.github.spotbugs" version "4.5.1"
-    id "checkstyle"
+    id 'pmd'
 }
+
+
 
 apply plugin: 'application'
 apply plugin: 'jacoco'
@@ -12,11 +19,12 @@ mainClassName = 'main.java.Main'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
+
     implementation "junit:junit:4.12"
     implementation files('cls/')
 }
@@ -25,40 +33,49 @@ test {
 	exclude "**/BlackBoxGiven.class"
 }
 
-///////////////////////////////////////////////////////////////////////
+apply plugin: "pmd"
+pmd {
+  ignoreFailures = true 
+  sourceSets = [sourceSets.main]
+  reportsDir = file("$project.buildDir/reports/pmd")
+  ruleSets = []
+  ruleSetConfig = resources.text.fromFile('ruleset.xml')
+}
+
+/////////////////////////////////////////////////////////////////////////
 // Configure Checkstyle
-/////////////////////////////////////////////////////////////////////
-apply plugin: 'checkstyle'
-checkstyle {
-  // Keep checkstyle a little quieter
-  ignoreFailures = true
-  showViolations = false
-}
+/////////////////////////////////////////////////////////////////////////
+// apply plugin: 'checkstyle'
+// checkstyle {
+//   // Keep checkstyle a little quieter
+//   ignoreFailures = true
+//   showViolations = false
+// }
 
-tasks.withType(Checkstyle) {
-  reports {
-    html.enabled = true
-    xml.enabled = false
-  }
-}
-checkstyle {
-    toolVersion = "8.8"
-}
+// tasks.withType(Checkstyle) {
+//   reports {
+//     html.enabled = true
+//     xml.enabled = false
+//   }
+// }
+// checkstyle {
+//     toolVersion = "8.8"
+// }
 
 
-///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 // Configure SpotBugs
-///////////////////////////////////////////////////////////////////////
-// To generate an HTML report instead of XML
-spotbugsMain {
- reports {
-     xml.enabled = false
-     html.enabled = true
- }
-}
-spotbugs {
- toolVersion = '4.7.3'
- ignoreFailures = true
- showProgress = true
- effort = 'max'
-}
+///////////////////////////////////////////////////////////////////////////
+
+// spotbugs {
+//   toolVersion = '3.1.12'
+//   toolVersion = '4.7.3'
+// }
+
+// // To generate an HTML report instead of XML
+// tasks.withType(com.github.spotbugs.SpotBugsTask) {
+//   reports {
+//     xml.enabled = false
+//     html.enabled = true
+//   }
+// }
