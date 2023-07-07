@@ -79,45 +79,65 @@ public class Cart {
      * @throws UnderAgeException throws exception if alcohol is bought from underage person
      */
     public int amountSaved() throws UnderAgeException {
-        int subTotal = 0;
-        int costAfterSavings = 0;
-
-        double produceCounter = 0;
-        int alcoholCounter = 0;
-        int frozenFoodCounter = 0;
-        int dairyCounter = 0;
-
+        int amountSaved = 0;
+        if (getTotalAlcohol() > 0 && this.userAge < LEGAL_AGE) {
+            throw new UnderAgeException("The User is not of age to purchase alcohol!");
+        }
+        amountSaved += getAlcoholFrozenFoodSavings();
+        amountSaved += getProduceSavings();
+        return amountSaved;
+    }
+    
+    private int getAlcoholFrozenFoodSavings() {
+        int savings = 0;
+        int totalAlcohol = getTotalAlcohol();
+        int totalFrozenFood = getTotalFrozenFood();
+        while (totalAlcohol > 0 && totalFrozenFood > 0) {
+            savings += 3;
+            totalAlcohol--;
+            totalFrozenFood--;
+        }
+        return savings;
+    }
+    
+    private int getProduceSavings() {
+        int savings = 0;
+        int totalProduce = getTotalProduce();
+        while (totalProduce >= 3) {
+            savings++;
+            totalProduce -= 3;
+        }
+        return savings;
+    }
+    
+    private int getTotalAlcohol() {
+        int totalAlcohol = 0;
         for (int i = 0; i < cart.size(); i++) {
-            subTotal += cart.get(i).getCost();
-            costAfterSavings = costAfterSavings + cart.get(i).getCost();
-            // changed all if statements from == to .eqauls to properly compare classes
-            if (cart.get(i).getClass().toString().equals(Produce.class.toString())) {
-                produceCounter++;
-
-                if (produceCounter >= 3) {
-                    costAfterSavings -= 1;
-                    produceCounter = 0;
-                }
-            } else if (cart.get(i).getClass().toString().equals(Alcohol.class.toString())) {
-                alcoholCounter++;
-                if (userAge < 21) {
-                    throw new UnderAgeException("The User is not of age to purchase alcohol!");
-                }
-            } else if (cart.get(i).getClass().toString().equals(FrozenFood.class.toString())) {
-                frozenFoodCounter++;
-            } else if (cart.get(i).getClass().toString().equals(Dairy.class.toString())) {
-                // changed Dairy from FrozenFood because we already checked FrozenFood
-                dairyCounter++;
-            }
-            if (alcoholCounter >= 1 && frozenFoodCounter >= 1) {
-                costAfterSavings = costAfterSavings - 3; 
-                // changed plus to minus, because discounts should be removed from cost
-                alcoholCounter--;
-                frozenFoodCounter--;
+            if (cart.get(i).getClass().toString().equals(Alcohol.class.toString())) {
+                totalAlcohol++;
             }
         }
+        return totalAlcohol;
+    }
+    
+    private int getTotalFrozenFood() {
+        int totalFrozenFood = 0;
+        for (int i = 0; i < cart.size(); i++) {
+            if (cart.get(i).getClass().toString().equals(FrozenFood.class.toString())) {
+                totalFrozenFood++;
+            }
+        }
+        return totalFrozenFood;
+    }
 
-        return subTotal - costAfterSavings;
+    private int getTotalProduce() {
+        int totalProduce = 0;
+        for (int i = 0; i < cart.size(); i++) {
+            if (cart.get(i).getClass().toString().equals(Produce.class.toString())) {
+                totalProduce++;
+            }
+        }
+        return totalProduce;
     }
 
     /**
