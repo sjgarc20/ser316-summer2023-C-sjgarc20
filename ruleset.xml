@@ -8,19 +8,19 @@
         This ruleset checks my code for bad stuff
     </description>
     <rule ref="category/java/design.xml/CyclomaticComplexity">
-    <properties>
-        <property name="methodReportLevel" value="2"/>
-    </properties>
+		<properties>
+			<property name="methodReportLevel" value="2"/>
+		</properties>
 	</rule>
 	<rule ref="category/java/design.xml/CouplingBetweenObjects">
 		<properties>
-        <property name="threshold" value="2"/>
-    </properties>
+			<property name="threshold" value="2"/>
+		</properties>
 	</rule>
 	<rule ref="category/java/design.xml/ExcessiveClassLength">
-	<properties>
-        <property name="minimum" value="100"/>
-    </properties>
+		<properties>
+			<property name="minimum" value="100"/>
+		</properties>
 	</rule>
 	<rule ref="category/java/design.xml/ExcessiveMethodLength">
 		<properties>
@@ -29,10 +29,19 @@
 	</rule>
 	<rule ref="category/java/design.xml/NPathComplexity">
 		<properties>
-        <property name="reportLevel" value="10"/>
-    </properties>
-</rule>
-<rule ref="category/java/bestpractices.xml/LooseCoupling" />
-
-
+			<property name="reportLevel" value="10"/>
+		</properties>
+	</rule>
+	<rule ref="category/java/bestpractices.xml/LooseCoupling" />
+	<rule ref="category/java/bestpractices.xml/JUnit5TestShouldBePackagePrivate" />
+	<rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts">
+		<properties>
+			<property name="maximumAsserts" value="1" />
+		</properties>
+	</rule>
+	<rule ref="category/java/bestpractices.xml/UnusedAssignment" />
+	<rule ref="category/java/bestpractices.xml/UnusedFormalParameter" />
+	<rule ref="category/java/bestpractices.xml/UnusedLocalVariable" />
+	<rule ref="category/java/bestpractices.xml/UnusedPrivateField" />
+	<rule ref="category/java/bestpractices.xml/UnusedPrivateMethod" />
 </ruleset>
