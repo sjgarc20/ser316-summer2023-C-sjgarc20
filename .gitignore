@@ -21,3 +21,5 @@
 
 # IntelliJ Project Settings folder
 .idea
+
+/bin
