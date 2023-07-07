@@ -41,34 +41,16 @@ public class Cart {
      */
     public double calcCost() throws UnderAgeException {
         double totalCost = 0.0;
-        int alcoholCounter = 0;
-        int frozenFoodCounter = 0;
-        int produceCounter = 0;
 
+        if (getTotalAlcohol() > 0 && this.userAge < LEGAL_AGE) {
+            throw new UnderAgeException("The User is not of age to purchase alcohol!");
+        }
+        
         for (int i = 0; i < this.cart.size(); i++) {
             totalCost += (double)((Product)this.cart.get(i)).getCost();
-            if (((Product)this.cart.get(i)).getClass() == Alcohol.class) {
-                ++alcoholCounter;
-                if (this.userAge < LEGAL_AGE) {
-                    throw new UnderAgeException("The User is not of age to purchase alcohol!");
-                }
-            } else if (((Product)this.cart.get(i)).getClass() == FrozenFood.class) {
-                ++frozenFoodCounter;
-            } else if (((Product)this.cart.get(i)).getClass() == Produce.class) {
-                ++produceCounter;
-            }
-
-            if (alcoholCounter >= 1 && frozenFoodCounter >= 1) {
-                totalCost -= 3.0;
-                --alcoholCounter;
-                --frozenFoodCounter;
-            }
-
-            if (produceCounter >= 3) {
-                --totalCost;
-                produceCounter -= 3;
-            }
         }
+        
+        totalCost -= (double)amountSaved();
 
         return totalCost + this.getTax(totalCost, "AZ");
     }
